@@ -39,11 +39,13 @@ public class Elevator {
                 for(int i=currentFloor;i<=t;i++){
                     Thread.currentThread().wait(10);
                     currentFloor++;
+                    System.out.println("Moving to floor " + currentFloor);
                 }
             } else {
                 for(int i=currentFloor;i>=t;i--){
                     Thread.currentThread().wait(10);
                     currentFloor--;
+                    System.out.println("Moving to floor " + currentFloor);
                 }
             }
         }
