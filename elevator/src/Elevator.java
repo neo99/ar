@@ -7,11 +7,29 @@ public class Elevator {
     private int top = 1;
     private int currentFloor = 0;
 
-    public void call(int from){
+    private boolean isIdle = true;
 
+    public Elevator(int top){
+        this.top = top;
+    }
+
+    public int getCurrentFloor(){
+        return currentFloor;
     }
 
     public void go(int to){
+        isIdle = false;
+    }
 
+    public boolean isServiceNeeded(){
+        return trips > 100;
+    }
+
+    public void service(){
+        trips = 0;
+    }
+
+    public boolean isIdle(){
+        return isIdle;
     }
 }
