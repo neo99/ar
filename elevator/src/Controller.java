@@ -11,7 +11,7 @@ import java.util.List;
  * and return the elevator to the caller; caller than tell elevator where to go
  *
  * Elevator maintain a destination list.
- * 
+ *
  *
  * @author Neo Wang
  * @since 3/15/16

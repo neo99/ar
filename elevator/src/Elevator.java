@@ -8,15 +8,15 @@ import java.util.List;
  */
 public class Elevator {
     private int trips = 0;
-    private int top = 1;
+    private int totalFloors = 1;
     private int currentFloor = 0;
     private List<Integer> destinationList = new ArrayList<Integer>();
 
 
     private boolean isIdle = true;
 
-    public Elevator(int top){
-        this.top = top;
+    public Elevator(int totalFloors){
+        this.totalFloors = totalFloors;
     }
 
     public int getCurrentFloor(){
@@ -24,7 +24,7 @@ public class Elevator {
     }
 
     public void go(int to) throws InterruptedException {
-        if (to < 1 || to > top) {
+        if (to < 1 || to > totalFloors) {
             System.out.println("cannot go there");
             return;
         }
