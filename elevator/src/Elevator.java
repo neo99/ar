@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Neo Wang
  * @since 3/15/16
@@ -6,6 +9,8 @@ public class Elevator {
     private int trips = 0;
     private int top = 1;
     private int currentFloor = 0;
+    private List<Integer> destinationList = new ArrayList<Integer>();
+
 
     private boolean isIdle = true;
 
@@ -18,7 +23,19 @@ public class Elevator {
     }
 
     public void go(int to){
+        if (to < 1 || to > top) {
+            System.out.println("cannot go there");
+            return;
+        }
+        
         isIdle = false;
+
+        destinationList.add(to);
+        for(Integer i:destinationList){
+
+        }
+
+        isIdle = true;
     }
 
     public boolean isServiceNeeded(){
@@ -31,5 +48,23 @@ public class Elevator {
 
     public boolean isIdle(){
         return isIdle;
+    }
+
+    public boolean isPassing(int from){
+        if (isIdle || destinationList.isEmpty()) return false;
+
+        int currentDestination = destinationList.get(0);
+        return currentDestination > from && from > currentFloor
+                || currentFloor > from && from > currentDestination;
+    }
+
+    public void open() throws InterruptedException {
+        System.out.println("open");
+        Thread.currentThread().wait(10);
+        System.out.println("close");
+    }
+
+    public void stopAt(int to){
+
     }
 }
