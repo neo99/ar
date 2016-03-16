@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,17 +23,29 @@ public class Elevator {
         return currentFloor;
     }
 
-    public void go(int to){
+    public void go(int to) throws InterruptedException {
         if (to < 1 || to > top) {
             System.out.println("cannot go there");
             return;
         }
-        
+
         isIdle = false;
 
         destinationList.add(to);
-        for(Integer i:destinationList){
+        for(Iterator<Integer> iterator = destinationList.iterator(); iterator.hasNext();){
+            int t = iterator.next();
 
+            if (t>currentFloor){
+                for(int i=currentFloor;i<=t;i++){
+                    Thread.currentThread().wait(10);
+                    currentFloor++;
+                }
+            } else {
+                for(int i=currentFloor;i>=t;i--){
+                    Thread.currentThread().wait(10);
+                    currentFloor--;
+                }
+            }
         }
 
         isIdle = true;
@@ -64,7 +77,12 @@ public class Elevator {
         System.out.println("close");
     }
 
+    /**
+     * stop takes priority
+     *
+     * @param to
+     */
     public void stopAt(int to){
-
+        destinationList.add(0, to);
     }
 }

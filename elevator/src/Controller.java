@@ -2,13 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The idea is all elevators register with controller while elevator tracks its whereabouts itself.
+ * All elevators register with controller while elevator tracks its whereabouts itself.
  * When controller receives call, it check with all elevators to get the closest idle one or a passing elevator, then
  * controller ask elevator
  * 1. open the door if idle elevator is on the calling floor
  * 2. go to the calling floor if it is idling on other floor than the calling floor
  * 3. stop at calling floor if it is passing
+ * and return the elevator to the caller; caller than tell elevator where to go
  *
+ * Elevator maintain a destination list.
+ * 
  *
  * @author Neo Wang
  * @since 3/15/16
